@@ -1,5 +1,7 @@
 package com.luminor.internship.service;
 
+import com.luminor.internship.controller.dto.PaymentRequest;
+import com.luminor.internship.controller.dto.PaymentResponse;
 import com.luminor.internship.repository.PaymentRepository;
 import com.luminor.internship.repository.dao.Payment;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +21,14 @@ public class PaymentService {
         this.paymentDao = paymentDao;
     }
 
-    public List<Payment> getPayments(){
+    public List<PaymentResponse> getPayments(){
         return paymentDao.getPayments().stream()
-                .map(payment -> new Payment(payment.getDebtorIban(),payment.getAmount()))
+                .map(payment -> new PaymentResponse(payment.getId(),payment.getTimeStamp(),payment.getDebtorIban(),payment.getAmount()))
                 .collect(Collectors.toList());
     }
 
     @Transactional
-    public void createPayment(Payment payment){
-        paymentDao.savePayments(new Payment(payment.getDebtorIban(),payment.getAmount()));
+    public void createPayment(PaymentRequest paymentRequest){
+        paymentDao.savePayments(new Payment(paymentRequest.getDebtorIban(),paymentRequest.getAmount()));
     }
 }
