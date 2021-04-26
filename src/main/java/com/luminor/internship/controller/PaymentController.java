@@ -20,14 +20,10 @@ import java.util.List;
 @RequestMapping(path = "/v1")
 public class PaymentController {
 
-    private final PaymentService paymentService;
-
     @Autowired
-    public PaymentController(PaymentService paymentService){
-        this.paymentService = paymentService;
-    }
+    private PaymentService paymentService;
 
-    @PostMapping(value = "/payment")
+    @PostMapping(value = "/payments")
     public ResponseEntity createPayment(@RequestBody PaymentRequest paymentRequest){
         try {
             return ResponseEntity.ok(paymentService.createPayment(paymentRequest));
