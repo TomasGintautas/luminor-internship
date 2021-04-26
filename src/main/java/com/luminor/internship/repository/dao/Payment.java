@@ -14,7 +14,7 @@ public class Payment {
     private UUID id;
 
     @CreationTimestamp
-    private LocalDateTime timeStamp;
+    private LocalDateTime timestamp;
 
     private String debtorIban;
     private BigDecimal amount;
@@ -36,12 +36,12 @@ public class Payment {
         this.id = id;
     }
 
-    public LocalDateTime getTimeStamp() {
-        return timeStamp;
+    public LocalDateTime getTimestamp() {
+        return timestamp;
     }
 
-    public void setTimeStamp(LocalDateTime timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setTimestamp(LocalDateTime timeStamp) {
+        this.timestamp = timeStamp;
     }
 
     public String getDebtorIban() {
@@ -64,7 +64,7 @@ public class Payment {
     public String toString() {
         return "Payment{" +
                 "id=" + id +
-                ", timeStamp=" + timeStamp +
+                ", timeStamp=" + timestamp +
                 ", debtorIban='" + debtorIban + '\'' +
                 ", amount=" + amount +
                 '}';

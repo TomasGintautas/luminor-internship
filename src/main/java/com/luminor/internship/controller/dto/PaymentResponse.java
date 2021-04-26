@@ -18,6 +18,9 @@ public class PaymentResponse {
         this.amount = amount;
     }
 
+    public PaymentResponse() {
+    }
+
     public UUID getId() {
         return id;
     }
