@@ -32,6 +32,7 @@ public class PaymentService {
     @Transactional
     public PaymentResponse createPayment(PaymentRequest paymentRequest){
         ValidationUtils.validateIban(paymentRequest.getDebtorIban());
+        ValidationUtils.validateAmount(paymentRequest.getAmount());
         PaymentResponse paymentResponse = new PaymentResponse();
         paymentResponse.setId(paymentDao.save(new Payment(paymentRequest.getDebtorIban(),paymentRequest.getAmount())).getId());
         return paymentResponse;
@@ -40,6 +41,8 @@ public class PaymentService {
     @Transactional
     public void createPaymentsFromFile(List<PaymentFiles> paymentFilesList){
         for(PaymentFiles paymentFiles: paymentFilesList){
+            ValidationUtils.validateIban(paymentFiles.getDebtorIban());
+            ValidationUtils.validateAmount(paymentFiles.getAmount());
             paymentDao.save(new Payment(paymentFiles.getDebtorIban(),paymentFiles.getAmount()));
         }
     }

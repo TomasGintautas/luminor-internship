@@ -1,6 +1,5 @@
 package com.luminor.internship.repository;
 
-
 import com.luminor.internship.repository.dao.Payment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
